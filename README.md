@@ -47,7 +47,7 @@ I know that code looks like shit. This is just my useful Python doodles with jus
 Fix flip/mirror bug.\
 Better GUI.\
 Merge grayscales together.\
-Make Nuke Addon.\
+Make Nuke Addon.
 ## 1.1
 Major improvements in code readability
 ## 1.0 
