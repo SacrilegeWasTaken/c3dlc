@@ -95,8 +95,12 @@ class Ui_QGenerate(object):
 
 
     def AddFunctions(self):
-        self.Generate.clicked.connect(lambda: self.Generate_Unique(self.ReadRGB()))
-        self.GenerateF.clicked.connect(lambda: self.Generate_Filled(self.ReadRGB()))
+        self.Generate.clicked.connect(lambda: self.Generate_Unique(self.ReadRGB(), 0, "output_R.tiff"))
+        self.Generate.clicked.connect(lambda: self.Generate_Unique(self.ReadRGB(), 1, "output_G.tiff"))
+        self.Generate.clicked.connect(lambda: self.Generate_Unique(self.ReadRGB(), 2, "output_B.tiff"))
+        self.GenerateF.clicked.connect(lambda: self.Generate_Filled(self.ReadRGB(), 0, "output_R.tiff"))
+        self.GenerateF.clicked.connect(lambda: self.Generate_Filled(self.ReadRGB(), 1, "output_G.tiff"))
+        self.GenerateF.clicked.connect(lambda: self.Generate_Filled(self.ReadRGB(), 2, "output_B.tiff"))
         self.height_in.textChanged.connect(lambda: self.ReadValues("height"))
         self.width_in.textChanged.connect(lambda: self.ReadValues("width"))
         self.size_in.textChanged.connect(lambda: self.ReadValues("size"))
@@ -114,7 +118,7 @@ class Ui_QGenerate(object):
             return
 
 
-    def Generate_Filled(self, rgb_array):
+    def Generate_Filled(self, rgb_array, kkz, filename):
         image_width = self.width
         image_height = self.height
         folder_path = "Filled"
@@ -129,45 +133,14 @@ class Ui_QGenerate(object):
                 color = rgb_array[pixel % len(rgb_array)]
                 for i in range(self.square_size):
                     for j in range(self.square_size):
-                        image.putpixel((x + i, y + j), int(color[0] * 65535))
+                        image.putpixel((x + i, y + j), int(color[kkz] * 65535))
                 x += self.square_size
                 if x >= image_width:
                     x = 0
                     y += self.square_size
                 if y >= image_height:
                     break
-            file_path = os.path.join(folder_path, "output_R.tiff")
-            image.save(file_path, format='TIFF', compression='tiff_deflate')
-            image = Image.new('I;16', (image_width, image_height), color=0)
-            x = 0
-            y = 0
-            for pixel in range(num_squares_x * num_squares_y):
-                color = rgb_array[pixel % len(rgb_array)]
-                for i in range(self.square_size):
-                    for j in range(self.square_size):
-                        image.putpixel((x + i, y + j), int(color[1] * 65535))
-                x += self.square_size
-                if x >= image_width:
-                    x = 0
-                    y += self.square_size
-                if y >= image_height:
-                    break
-            file_path = os.path.join(folder_path, "output_G.tiff")
-            image.save(file_path, format='TIFF', compression='tiff_deflate')
-            x = 0
-            y = 0
-            for pixel in range(num_squares_x * num_squares_y):
-                color = rgb_array[pixel % len(rgb_array)]
-                for i in range(self.square_size):
-                    for j in range(self.square_size):
-                        image.putpixel((x + i, y + j), int(color[2] * 65535))
-                x += self.square_size
-                if x >= image_width:
-                    x = 0
-                    y += self.square_size
-                if y >= image_height:
-                    break
-            file_path = os.path.join(folder_path, "output_B.tiff")
+            file_path = os.path.join(folder_path, filename)
             image.save(file_path, format='TIFF', compression='tiff_deflate')
             _translate = QtCore.QCoreApplication.translate
             self.console.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">Succeed!</p></body></html>"))
@@ -176,7 +149,7 @@ class Ui_QGenerate(object):
             self.console.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">The width value must be divisible<br/> without remainder by the square size</p></body></html>"))
         
 
-    def Generate_Unique(self, rgb_array):
+    def Generate_Unique(self, rgb_array, kkz, filename):
         image_width = self.width
         image_height = self.height
         num_squares_x = image_width // self.square_size
@@ -186,7 +159,7 @@ class Ui_QGenerate(object):
         image = Image.new('I;16', (image_width, image_height), color=0)
         try:
             for i, rgb in enumerate(rgb_array):
-                red = int(rgb[0] * 65535)
+                red = int(rgb[kkz] * 65535)
                 y = num_squares_y - 1 - (i // num_squares_x)
                 x = i % num_squares_x
                 square_x = x * self.square_size
@@ -194,31 +167,7 @@ class Ui_QGenerate(object):
                 for i in range(self.square_size):
                     for j in range(self.square_size):
                         image.putpixel((square_x + i, square_y + j), red)
-            file_path = os.path.join(folder_path, "output_R.tiff")
-            image.save(file_path, format='TIFF', compression='tiff_deflate')
-            image = Image.new('I;16', (image_width, image_height), color=0)
-            for i, rgb in enumerate(rgb_array):
-                red = int(rgb[1] * 65535)
-                y = num_squares_y - 1 - (i // num_squares_x)
-                x = i % num_squares_x
-                square_x = x * self.square_size
-                square_y = y * self.square_size
-                for i in range(self.square_size):
-                    for j in range(self.square_size):
-                        image.putpixel((square_x + i, square_y + j), red)
-            file_path = os.path.join(folder_path, "output_G.tiff")
-            image.save(file_path, format='TIFF', compression='tiff_deflate')
-            image = Image.new('I;16', (image_width, image_height), color=0)
-            for i, rgb in enumerate(rgb_array):
-                red = int(rgb[2] * 65535)
-                y = num_squares_y - 1 - (i // num_squares_x)
-                x = i % num_squares_x
-                square_x = x * self.square_size
-                square_y = y * self.square_size
-                for i in range(self.square_size):
-                    for j in range(self.square_size):
-                        image.putpixel((square_x + i, square_y + j), red)
-            file_path = os.path.join(folder_path, "output_B.tiff")
+            file_path = os.path.join(folder_path, filename)
             image.save(file_path, format='TIFF', compression='tiff_deflate')
             _translate = QtCore.QCoreApplication.translate
             self.console.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">Succeed!</p></body></html>"))
