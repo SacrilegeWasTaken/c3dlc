@@ -40,4 +40,4 @@ BEGIN_DATA
 END_DATA
 ```
 # P.S.
-I know that code looks like shit. This is just my useful Python doodles with just copying and pasting my already wroten algorithms. :)
+I know that code looks like shit. This is just my useful Python doodles with just copying and pasting ChatGPT algorithms with few corrections. :)
