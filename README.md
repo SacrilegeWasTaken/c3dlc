@@ -1,5 +1,5 @@
 # 3DLC_CustomCheckerReader
-Python script, that creates RGB image of each color from 3D LUT Creator custom checker. Unique mode: output is 3 images of each channel with each color (RGB). Filled mode: funny mode that creates amazing pictures filled with colors from checker.  
+Python script, that creates RGB image of each color from 3D LUT Creator custom checker. Unique mode: output is 3 images of each channel with each color (RGB). Filled mode: funny mode that creates amazing pictures filled with colors from checker. Script takes lines between BEGIN_DATA/END_DATA lines and interprets RGB_R, RGB_G and RGB_B columns as 16bit RGB array. Script takes the R/G/B values and creates grayscale images for each value using all colors from array. It creates a lotta squares with your colors. One thing you should know that this script in one mode flipping or mirroring image. Enjoy saving a lotta time!
 
 # Running
 
@@ -16,10 +16,6 @@ Don't forget about Qt and PIL :)
 pip install pyqt5
 pip install pillow
 ```
-
-# Description
-
-Script takes lines between BEGIN_DATA/END_DATA lines and interprets RGB_R, RGB_G and RGB_B columns as 16bit RGB array. Script takes the R/G/B values and creates grayscale images for each value using all colors from array. It creates a lotta squares with your colors. One thing you should know that this script in one mode flipping or mirroring image. Enjoy saving a lotta time!
 
 # colors.txt example
 ```txt
