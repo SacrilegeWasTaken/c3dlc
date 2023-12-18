@@ -11,6 +11,12 @@ pyinstaller --onefile 3DLC_CCR.py
 ```
 On Win it probably the same
 
+Don't forget about Qt and PIL :)
+```bash
+pip install pyqt5
+pip install pillow
+```
+
 # Description
 
 Script takes lines between BEGIN_DATA/END_DATA lines and interprets RGB_R, RGB_G and RGB_B columns as 16bit RGB array. Script takes the R/G/B values and creates grayscale images for each value using all colors from array. It creates a lotta squares with your colors. One thing you should know that this script in one mode flipping or mirroring image. Enjoy saving a lotta time!
