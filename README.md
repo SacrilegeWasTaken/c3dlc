@@ -43,6 +43,11 @@ END_DATA
 I know that code looks like shit. This is just my useful Python doodles with just copying and pasting ChatGPT algorithms with few corrections. :)
 
 # ChangeLog
+## Waypoints
+Fix flip/mirror bug.
+Better GUI.
+Merge grayscales together.
+Make Nuke Addon.
 ## 1.1
 Major improvements in code readability
 ## 1.0 
