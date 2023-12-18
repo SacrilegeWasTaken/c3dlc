@@ -39,3 +39,5 @@ BEGIN_DATA
 10	B2	0.37	0.37	0.47	40.765	5.80	-14.06
 END_DATA
 ```
+# P.S.
+I know that code looks like shit. This is just my useful Python doodles with just copying and pasting already wroten algorithms. :)
