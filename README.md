@@ -31,7 +31,7 @@ BEGIN_DATA
 2	A2	0.46	0.42	0.47	46.826	6.13	-5.95
 3	A3	0.38	0.32	0.44	37.147	13.48	-15.86
 4	A4	0.38	0.45	0.53	47.798	-1.17	-13.57
-5	A5	0.41	0.47	0.50	49.707	-4.63	-5.93
+5	A5	0.41	0.47	0.50	49.707	-4.63	-5.9M
 6	A6	0.19	0.24	0.26	24.569	-2.92	-5.20
 7	A7	0.40	0.48	0.48	49.678	-7.29	-2.45
 8	A8	0.22	0.22	0.21	23.135	0.21	0.77
@@ -41,3 +41,9 @@ END_DATA
 ```
 # P.S.
 I know that code looks like shit. This is just my useful Python doodles with just copying and pasting ChatGPT algorithms with few corrections. :)
+
+# ChangeLog
+## 1.1
+Major improvements in code readability
+## 1.0 
+First upload
