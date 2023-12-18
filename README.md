@@ -44,10 +44,10 @@ I know that code looks like shit. This is just my useful Python doodles with jus
 
 # ChangeLog
 ## Waypoints
-Fix flip/mirror bug.
-Better GUI.
-Merge grayscales together.
-Make Nuke Addon.
+Fix flip/mirror bug.\
+Better GUI.\
+Merge grayscales together.\
+Make Nuke Addon.\
 ## 1.1
 Major improvements in code readability
 ## 1.0 
