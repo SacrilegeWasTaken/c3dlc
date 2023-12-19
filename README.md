@@ -3,7 +3,7 @@ Python script, that creates RGB image of each color from 3D LUT Creator custom c
 
 # Running
 
-You can run .py script on any platform of build executable for yours.
+You can run .py script on any platform or build executable for yours.
 
 For e.x. on mac I ran:
 ```bash
