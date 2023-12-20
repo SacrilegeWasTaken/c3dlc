@@ -1,8 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PIL import Image
-import os
 from colormath.color_objects import LabColor, sRGBColor
 from colormath.color_conversions import convert_color
+import os
+
 
 class Ui_QGenerate(object):
     def setupUi(self, QGenerate):
@@ -11,64 +12,113 @@ class Ui_QGenerate(object):
         QGenerate.setMinimumSize(QtCore.QSize(410, 232))
         QGenerate.setMaximumSize(QtCore.QSize(410, 232))
         QGenerate.setWindowOpacity(0.95)
+        QGenerate.setStyleSheet("background-color: #45453F")
         QGenerate.setAnimated(True)
         QGenerate.setTabShape(QtWidgets.QTabWidget.Rounded)
         QGenerate.setUnifiedTitleAndToolBarOnMac(False)
         self.centralwidget = QtWidgets.QWidget(QGenerate)
         self.centralwidget.setObjectName("centralwidget")
         self.Generate = QtWidgets.QPushButton(self.centralwidget)
-        self.Generate.setGeometry(QtCore.QRect(20, 100, 181, 71))
+        self.Generate.setGeometry(QtCore.QRect(20, 90, 181, 71))
+        self.Generate.setMinimumSize(QtCore.QSize(174, 0))
         self.Generate.setMaximumSize(QtCore.QSize(550, 71))
         font = QtGui.QFont()
-        font.setFamily("Teko")
-        font.setPointSize(24)
+        font.setFamily(".AppleSystemUIFont")
+        font.setPointSize(18)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(50)
+        font.setKerning(False)
         self.Generate.setFont(font)
-        self.Generate.setStyleSheet("")
+        self.Generate.setStyleSheet("background-color: #63635B;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 5px;\n"
+"    border-color: #6E6E67;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;\n"
+"color: #E8E8DB")
         self.Generate.setAutoDefault(False)
         self.Generate.setDefault(False)
         self.Generate.setFlat(False)
         self.Generate.setObjectName("Generate")
         self.width_in = QtWidgets.QTextEdit(self.centralwidget)
-        self.width_in.setGeometry(QtCore.QRect(20, 60, 111, 31))
+        self.width_in.setGeometry(QtCore.QRect(20, 50, 111, 31))
+        self.width_in.setStyleSheet("background-color: #63635B;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 5px;\n"
+"    border-color: #6E6E67;")
         self.width_in.setObjectName("width_in")
         self.w = QtWidgets.QLabel(self.centralwidget)
-        self.w.setGeometry(QtCore.QRect(20, 20, 111, 41))
+        self.w.setGeometry(QtCore.QRect(20, 20, 111, 30))
         font = QtGui.QFont()
-        font.setFamily("Teko")
-        font.setPointSize(24)
+        font.setFamily(".AppleSystemUIFont")
+        font.setPointSize(15)
+        font.setBold(False)
+        font.setWeight(50)
         self.w.setFont(font)
+        self.w.setStyleSheet("color: #E8E8DB")
         self.w.setObjectName("w")
         self.h = QtWidgets.QLabel(self.centralwidget)
-        self.h.setGeometry(QtCore.QRect(150, 20, 111, 41))
+        self.h.setGeometry(QtCore.QRect(150, 20, 111, 30))
         font = QtGui.QFont()
-        font.setFamily("Teko")
-        font.setPointSize(24)
+        font.setFamily(".AppleSystemUIFont")
+        font.setPointSize(15)
+        font.setBold(False)
+        font.setWeight(50)
         self.h.setFont(font)
+        self.h.setStyleSheet("color: #E8E8DB")
         self.h.setObjectName("h")
         self.height_in = QtWidgets.QTextEdit(self.centralwidget)
-        self.height_in.setGeometry(QtCore.QRect(150, 60, 111, 31))
+        self.height_in.setGeometry(QtCore.QRect(150, 50, 111, 31))
+        self.height_in.setStyleSheet("background-color: #63635B;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 5px;\n"
+"    border-color: #6E6E67;")
         self.height_in.setObjectName("height_in")
         self.ss = QtWidgets.QLabel(self.centralwidget)
-        self.ss.setGeometry(QtCore.QRect(280, 20, 111, 41))
+        self.ss.setGeometry(QtCore.QRect(280, 20, 111, 30))
         font = QtGui.QFont()
-        font.setFamily("Teko")
-        font.setPointSize(24)
+        font.setFamily(".AppleSystemUIFont")
+        font.setPointSize(15)
+        font.setBold(False)
+        font.setWeight(50)
         self.ss.setFont(font)
+        self.ss.setStyleSheet("color: #E8E8DB")
         self.ss.setObjectName("ss")
         self.size_in = QtWidgets.QTextEdit(self.centralwidget)
-        self.size_in.setGeometry(QtCore.QRect(280, 60, 111, 31))
+        self.size_in.setGeometry(QtCore.QRect(280, 50, 111, 31))
+        self.size_in.setStyleSheet("background-color: #63635B;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 5px;\n"
+"    border-color: #6E6E67;\n"
+"")
         self.size_in.setObjectName("size_in")
         self.console = QtWidgets.QLabel(self.centralwidget)
-        self.console.setGeometry(QtCore.QRect(20, 180, 371, 41))
+        self.console.setGeometry(QtCore.QRect(20, 175, 375, 41))
+        self.console.setStyleSheet("color: #E8E8DB")
         self.console.setObjectName("console")
         self.GenerateF = QtWidgets.QPushButton(self.centralwidget)
-        self.GenerateF.setGeometry(QtCore.QRect(210, 100, 181, 71))
+        self.GenerateF.setGeometry(QtCore.QRect(210, 90, 181, 71))
+        self.GenerateF.setMinimumSize(QtCore.QSize(174, 0))
         self.GenerateF.setMaximumSize(QtCore.QSize(550, 71))
         font = QtGui.QFont()
-        font.setFamily("Teko")
-        font.setPointSize(24)
+        font.setFamily(".AppleSystemUIFont")
+        font.setPointSize(18)
+        font.setKerning(False)
         self.GenerateF.setFont(font)
-        self.GenerateF.setStyleSheet("")
+        self.GenerateF.setStyleSheet("background-color: #63635B;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 5px;\n"
+"    border-color: #6E6E67;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;\n"
+"color: #E8E8DB")
         self.GenerateF.setAutoDefault(False)
         self.GenerateF.setDefault(False)
         self.GenerateF.setFlat(False)
@@ -76,13 +126,11 @@ class Ui_QGenerate(object):
         QGenerate.setCentralWidget(self.centralwidget)
         self.retranslateUi(QGenerate)
         QtCore.QMetaObject.connectSlotsByName(QGenerate)
-
         self.AddFunctions()
-
 
     def retranslateUi(self, QGenerate):
         _translate = QtCore.QCoreApplication.translate
-        QGenerate.setWindowTitle(_translate("QGenerate", "TIFF"))
+        QGenerate.setWindowTitle(_translate("QGenerate", "PNG"))
         self.Generate.setText(_translate("QGenerate", "Generate unique"))
         self.w.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">Width</p></body></html>"))
         self.h.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">Height</p></body></html>"))
@@ -107,7 +155,7 @@ class Ui_QGenerate(object):
         self.width_in.textChanged.connect(lambda: self.ReadValues("width"))
         self.size_in.textChanged.connect(lambda: self.ReadValues("size"))
 
-
+    
     def ReadValues(self, what):
         try:
             if what == "width":
@@ -143,7 +191,7 @@ class Ui_QGenerate(object):
                 if y >= image_height:
                     break
             file_path = os.path.join(folder_path, filename)
-            image.save(file_path, format='TIFF', compression='tiff_deflate')
+            image.save(file_path, format='TIFF', compression=None)
             _translate = QtCore.QCoreApplication.translate
             self.console.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">Succeed!</p></body></html>"))
         except:
@@ -170,7 +218,7 @@ class Ui_QGenerate(object):
                     for j in range(self.square_size):
                         image.putpixel((square_x + i, square_y + j), red)
             file_path = os.path.join(folder_path, filename)
-            image.save(file_path, format='TIFF', compression='tiff_deflate')
+            image.save(file_path, format='TIFF', compression=None)
             _translate = QtCore.QCoreApplication.translate
             self.console.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">Succeed!</p></body></html>"))
         except:
@@ -189,7 +237,8 @@ class Ui_QGenerate(object):
                 for line in data_lines: 
                     values = line.strip().split('\t') 
                     lab_l, lab_a, lab_b = float(values[5]), float(values[6]), float(values[7]) 
-                    lab_color = LabColor(lab_l, lab_a, lab_b) 
+                    lab_color = LabColor(lab_l, lab_a, lab_b)
+                    lab_color.set_illuminant("d65")
                     rgb_color = convert_color(lab_color, sRGBColor) 
                     rgb_array.append(list(rgb_color.get_value_tuple())) 
                 return rgb_array 
