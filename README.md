@@ -11,10 +11,11 @@ pyinstaller --onefile 3DLC_CCR.py
 ```
 On Win it probably the same
 
-Don't forget about Qt and PIL :)
+Don't forget about Qt, PIL and colormath modules :)
 ```bash
 pip install pyqt5
 pip install pillow
+pip install colormath
 ```
 
 # colors.txt example
@@ -49,6 +50,7 @@ Add OpenEXR mode.\
 Better GUI.\
 Merge grayscales together.\
 Improve code readability.\
+Make CXX verison just for fun.\
 Make Nuke Addon.
 ## 1.2
 Fixed bug that colors does not match.\
