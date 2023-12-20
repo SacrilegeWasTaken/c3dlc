@@ -53,7 +53,7 @@ Improve code readability.\
 Make CXX verison just for fun.\
 Make Nuke Addon.
 ## 1.2
-Fixed bug that colors does not match.\
+Fixed bug that colors were a little bit different.\
 Now taking LAB values from colors.txt and converting it to RGB.
 ## 1.1
 Major improvements in code readability
