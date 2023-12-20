@@ -47,11 +47,13 @@ END_DATA
 - Fix flip/mirror bug.
 - Add 32-bit mode.
 - Add OpenEXR mode.
-- Better GUI.
 - Merge grayscales together.
-- Improve code readability.
+- Comments in source file.
 - Make CXX verison just for fun.
 - Make Nuke Addon.
+## 1.3
+- Fixed bug that cold colors were a bit different. Changed illuminant from d50 to d65.
+- Better GUI (may be some errors with text on Win).
 ## 1.2
 - Fixed bug that colors were a little bit different.
 - Now taking LAB values from colors.txt and converting it to RGB.
