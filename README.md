@@ -1,5 +1,5 @@
 # 3DLC_CustomCheckerReader
-Python script, that creates RGB image of each color from 3D LUT Creator custom checker. Unique mode: output is 3 images of each channel with each color (RGB). Filled mode: funny mode that creates amazing pictures filled with colors from checker. Script takes lines between BEGIN_DATA/END_DATA lines and interprets RGB_R, RGB_G and RGB_B columns as 16bit RGB array. Script takes the R/G/B values and creates grayscale images for each value using all colors from array. It creates a lotta squares with your colors. One thing you should know that this script in one mode flipping or mirroring image. Enjoy saving a lotta time!
+Python script, that creates RGB image of each color from 3D LUT Creator custom checker. Unique mode: output is 3 images of each channel with each color (RGB). Filled mode: funny mode that creates amazing pictures filled with colors from checker. Script takes lines between BEGIN_DATA/END_DATA lines and covert LAB_L, LAB_A and LAB_B columns to 16bit RGB array. Script takes the R/G/B values and creates grayscale images for each value using all colors from array. It creates a lotta squares with your colors. One thing you should know that this script in one mode flipping or mirroring image. Enjoy saving a lotta time!
 
 # Running
 
@@ -44,9 +44,15 @@ END_DATA
 # ChangeLog
 ## Waypoints
 Fix flip/mirror bug.\
+Add 32-bit mode.\
+Add OpenEXR mode.\
 Better GUI.\
 Merge grayscales together.\
+Improve code readability.\
 Make Nuke Addon.
+## 1.2
+Fixed bug that colors does not match.\
+Now taking LAB values from colors.txt and converting it to RGB.
 ## 1.1
 Major improvements in code readability
 ## 1.0 
