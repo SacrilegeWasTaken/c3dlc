@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PIL import Image
 import os
+from colormath.color_objects import LabColor, sRGBColor
+from colormath.color_conversions import convert_color
 
 class Ui_QGenerate(object):
     def setupUi(self, QGenerate):
@@ -133,7 +135,7 @@ class Ui_QGenerate(object):
                 color = rgb_array[pixel % len(rgb_array)]
                 for i in range(self.square_size):
                     for j in range(self.square_size):
-                        image.putpixel((x + i, y + j), int(color[kkz] * 65535))
+                        image.putpixel((x + i, y + j), int(color[kkz] * 65536))
                 x += self.square_size
                 if x >= image_width:
                     x = 0
@@ -159,7 +161,7 @@ class Ui_QGenerate(object):
         image = Image.new('I;16', (image_width, image_height), color=0)
         try:
             for i, rgb in enumerate(rgb_array):
-                red = int(rgb[kkz] * 65535)
+                red = int(rgb[kkz] * 65536)
                 y = num_squares_y - 1 - (i // num_squares_x)
                 x = i % num_squares_x
                 square_x = x * self.square_size
@@ -178,17 +180,19 @@ class Ui_QGenerate(object):
 
     def ReadRGB(self):
         try:
-            with open('colors.txt', 'r') as f:
-                lines = f.readlines()
-                begin_data_index = lines.index('BEGIN_DATA\n')
-                end_data_index = lines.index('END_DATA\n')
-                data_lines = lines[begin_data_index + 1:end_data_index]
-                rgb_array = []
-                for line in data_lines:
-                    values = line.strip().split('\t')
-                    lab_l, lab_a, lab_b = float(values[2]), float(values[3]), float(values[4])
-                    rgb_array.append([lab_l, lab_a, lab_b])
-            return rgb_array
+            with open('colors.txt', 'r') as f: 
+                lines = f.readlines() 
+                begin_data_index = lines.index('BEGIN_DATA\n') 
+                end_data_index = lines.index('END_DATA\n') 
+                data_lines = lines[begin_data_index + 1:end_data_index] 
+                rgb_array = [] 
+                for line in data_lines: 
+                    values = line.strip().split('\t') 
+                    lab_l, lab_a, lab_b = float(values[5]), float(values[6]), float(values[7]) 
+                    lab_color = LabColor(lab_l, lab_a, lab_b) 
+                    rgb_color = convert_color(lab_color, sRGBColor) 
+                    rgb_array.append(list(rgb_color.get_value_tuple())) 
+                return rgb_array 
         except:
             _translate = QtCore.QCoreApplication.translate
             self.console.setText(_translate("QGenerate", "<html><head/><body><p align=\"center\">Don't forget about colors.txt<br/>If colors.txt exists: check </p></body></html>"))
