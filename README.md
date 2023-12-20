@@ -44,16 +44,16 @@ END_DATA
 
 # ChangeLog
 ## Waypoints
-- Fix flip/mirror bug.\
-- Add 32-bit mode.\
-- Add OpenEXR mode.\
-- Better GUI.\
-- Merge grayscales together.\
-- Improve code readability.\
-- Make CXX verison just for fun.\
+- Fix flip/mirror bug.
+- Add 32-bit mode.
+- Add OpenEXR mode.
+- Better GUI.
+- Merge grayscales together.
+- Improve code readability.
+- Make CXX verison just for fun.
 - Make Nuke Addon.
 ## 1.2
-- Fixed bug that colors were a little bit different.\
+- Fixed bug that colors were a little bit different.
 - Now taking LAB values from colors.txt and converting it to RGB.
 ## 1.1
 - Major improvements in code readability
