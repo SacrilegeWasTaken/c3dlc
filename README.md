@@ -51,6 +51,7 @@ END_DATA
 - Comments in source file.
 - Make CXX verison just for fun.
 - Make Nuke Addon.
+- In-GUI picture preview.
 ## 1.3
 - Fixed bug that cold colors were a bit different. Changed illuminant from d50 to d65.
 - Better GUI (may be some errors with text on Win).
