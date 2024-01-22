@@ -7,8 +7,13 @@ This app start drawing color rectangles from top-left corner of the image.
 Enjoy saving a lotta time!
 
 # Running
+## Downloads
 
-- Download executable converter3dlc or compile program by yourself.
+Download converter3dlc for Apple Silicon MacOS or converter3dlc.exe for Windows
+If you're on linux -> build app with cargo. Short instruction located below.
+
+## User guide
+
 - Run the executable. It will instantly create c3dlc directory in the same folder.
 - Put your text files (you can drop .cie directly) in the c3ldc/source folder.
 - Open file in editor by clicking one of the file buttons.
