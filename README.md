@@ -1,10 +1,17 @@
 # 3DLC_CustomCheckerReader
 
+Rust application, that creates RGB image of each color from 3D LUT Creator custom checker. Generate unique: output is image with each color (RGB) from the source file. Generate filled: funny thing that creates amazing pictures filled with colors from checker. App takes lines between BEGIN_DATA/END_DATA lines and covert LAB_L, LAB_A and LAB_B columns to 32-bit RGB array. App takes the RGB values and creates PNG(for 16-bit mode) or OpenEXR(for 32-bit mode) images for each value using all colors from array. Also you can edit c3ldc/source/* files with built-in text editor.
 
+This app start drawing color rectangles from top-left corner of the image.
+
+Enjoy saving a lotta time!
 
 # Running
 
-
+Download executable converter3dlc or compile program by yourself.
+```bash
+cargo build --release
+```
 
 # c3dlc/source/* example
 ```txt
@@ -31,12 +38,14 @@ END_DATA
 
 
 # ChangeLog
+## Known bugs
+- App crashing if box size is 0
 ## Waypoints
-- Fix flip/mirror bug.
-- Comments in source file.
-- Make Nuke Addon.
-- In-GUI picture preview.
-- Comments in colors.txt
+- Mirror image
+- Comments in source file
+- Make Nuke Addon
+- In-GUI picture preview
+- Async generation
 ## 2.0
 - Now it's pure Rust!
 - Added 32-bit mode powered by OpenEXR
