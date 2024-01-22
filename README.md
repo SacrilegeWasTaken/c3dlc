@@ -1,24 +1,12 @@
 # 3DLC_CustomCheckerReader
-Python script, that creates RGB image of each color from 3D LUT Creator custom checker. Unique mode: output is 3 images of each channel with each color (RGB). Filled mode: funny mode that creates amazing pictures filled with colors from checker. Script takes lines between BEGIN_DATA/END_DATA lines and covert LAB_L, LAB_A and LAB_B columns to 16bit RGB array. Script takes the R/G/B values and creates grayscale images for each value using all colors from array. It creates a lotta squares with your colors. One thing you should know that this script in one mode flipping or mirroring image. Enjoy saving a lotta time!
+
+
 
 # Running
 
-You can run .py script on any platform or build executable for yours.
 
-For e.x. on mac I ran:
-```bash
-pyinstaller --onefile 3DLC_CCR.py
-```
-On Win it probably the same
 
-Don't forget about Qt, PIL and colormath modules :)
-```bash
-pip install pyqt5
-pip install pillow
-pip install colormath
-```
-
-# colors.txt example
+# c3dlc/source/* example
 ```txt
 NUMBER_OF_SETS	96
 LGOROWLENGTH	12
@@ -45,14 +33,15 @@ END_DATA
 # ChangeLog
 ## Waypoints
 - Fix flip/mirror bug.
-- Add 32-bit mode.
-- Add OpenEXR mode.
-- Merge grayscales together.
 - Comments in source file.
-- Make CXX verison just for fun.
 - Make Nuke Addon.
 - In-GUI picture preview.
 - Comments in colors.txt
+## 2.0
+- Now it's pure Rust!
+- Added 32-bit mode powered by OpenEXR
+- Now creating with merged channels (1 file instead of 3)
+- Now have intergrated text editor to proccess multiple color files.
 ## 1.3
 - Fixed bug that cold colors were a bit different. Changed illuminant from d50 to d65.
 - Better GUI (may be some errors with text on Win).
@@ -63,3 +52,8 @@ END_DATA
 - Major improvements in code readability
 ## 1.0 
 - First upload
+
+# Old python version
+Old python version still in repository in the legacy folder. But it will never be updated by myself.
+If you want to support python version text me: t.me/vietnam_veteran
+
