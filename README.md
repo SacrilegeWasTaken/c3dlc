@@ -9,7 +9,7 @@ Enjoy saving a lotta time!
 # Running
 ## Downloads
 
-Download converter3dlc for Apple Silicon MacOS or converter3dlc.exe for Windows
+Download converter3dlc for Apple Silicon MacOS or converter3dlc.exe for Windows  
 If you're on linux -> build app with cargo. Short instruction located below.
 
 ## User guide
