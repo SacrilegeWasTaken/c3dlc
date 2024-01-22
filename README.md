@@ -8,10 +8,21 @@ Enjoy saving a lotta time!
 
 # Running
 
-Download executable converter3dlc or compile program by yourself.
-```bash
-cargo build --release
-```
+- Download executable converter3dlc or compile program by yourself.
+- Run the executable. It will instantly create c3dlc directory in the same folder.
+- Put your text files (you can drop .cie directly) in the c3ldc/source folder.
+- Open file in editor by clicking one of the file buttons.
+- Select mode by clicking on the "Toggle mode" button.
+- Enter width, height, box size and make sure that width and height divided by boxsize is equals zero.
+- Click one of generate buttons and check your c3dlc/pics folder for result!
+
+## To complile program for your system
+
+- Download rust.
+- Clone repository.
+- Open terminal in the repository directory.
+- Run the command `cargo build --release`.
+- Check your target folder for application.
 
 # c3dlc/source/* example
 ```txt
@@ -39,17 +50,18 @@ END_DATA
 
 # ChangeLog
 ## Known bugs
-- App crashing if box size is 0
+- App crashing if box size equals zero.
 ## Waypoints
-- Mirror image
-- Comments in source file
-- Make Nuke Addon
-- In-GUI picture preview
-- Async generation
+- Mirror image.
+- Comments in source file.
+- Make Nuke Addon.
+- In-GUI picture preview.
+- Async generation.
+- Improve code readability.
 ## 2.0
 - Now it's pure Rust!
-- Added 32-bit mode powered by OpenEXR
-- Now creating with merged channels (1 file instead of 3)
+- Added 32-bit mode powered by OpenEXR.
+- Now creating with merged channels (1 file instead of 3).
 - Now have intergrated text editor to proccess multiple color files.
 ## 1.3
 - Fixed bug that cold colors were a bit different. Changed illuminant from d50 to d65.
@@ -58,9 +70,9 @@ END_DATA
 - Fixed bug that colors were a little bit different.
 - Now taking LAB values from colors.txt and converting it to RGB.
 ## 1.1
-- Major improvements in code readability
+- Major improvements in code readability.
 ## 1.0 
-- First upload
+- First upload.
 
 # Old python version
 Old python version still in repository in the legacy folder. But it will never be updated by myself.
