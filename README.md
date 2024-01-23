@@ -18,7 +18,7 @@ If you're on linux -> build app with cargo. Short instruction located below.
 - Put your text files (you can drop .cie directly) in the c3ldc/source folder.
 - Open file in editor by clicking one of the file buttons.
 - Select mode by clicking on the "Toggle mode" button.
-- Enter width, height, box size and make sure that width and height divided by boxsize is equals zero.
+- Enter width, height and box size.
 - Click one of generate buttons and check your c3dlc/pics folder for result!
 
 ## To complile program for your system
@@ -55,14 +55,16 @@ END_DATA
 
 # ChangeLog
 ## Known bugs
-- App crashing if box size equals zero.
+- None
 ## Waypoints
-- Mirror image.
+- Fixed box size equals zero crash.
 - Comments in source file.
 - Make Nuke Addon.
 - In-GUI picture preview.
-- Async generation.
-- Improve code readability.
+## 2.1
+- Now generating color boxes from bottom left corner.
+- Now generating doesn't make UI freeze. Generating now in separate thread.
+- Major improvements in code readability.
 ## 2.0
 - Now it's pure Rust!
 - Added 32-bit mode powered by OpenEXR.
