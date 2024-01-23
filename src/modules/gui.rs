@@ -121,6 +121,7 @@ impl eframe::App for MyApp {
                                         ErrorKind::InvalidData => self.console = String::from(
                                             "\t\t\t\t\t\t\tGeneration error.\nMake sure that (width, height)%boxsize == 0"
                                         ),
+                                        ErrorKind::WriteZero =>  self.console = String::from("\t\tGeneration error.\nZero boxsize is forbidden."),
                                         _ => self.console = String::from("Unknown generation error.")
                                     }
                                 }
@@ -160,6 +161,7 @@ impl eframe::App for MyApp {
                                         ErrorKind::InvalidData => self.console = String::from(
                                             "\t\t\t\t\t\t\tGeneration error.\nMake sure that (width, height)%boxsize == 0"
                                         ),
+                                        ErrorKind::WriteZero => self.console = String::from("\t\tGeneration error.\nZero boxsize is forbidden."),
                                         _ => self.console = String::from("Unknown generation error.")
                                     }
                                 }
