@@ -68,6 +68,7 @@ END_DATA
 - Added 32-bit mode powered by OpenEXR.
 - Now creating with merged channels (1 file instead of 3).
 - Now have intergrated text editor to proccess multiple color files.
+- Better GUI. Now looks the same on all systems.
 ## 1.3
 - Fixed bug that cold colors were a bit different. Changed illuminant from d50 to d65.
 - Better GUI (may be some errors with text on Win).
