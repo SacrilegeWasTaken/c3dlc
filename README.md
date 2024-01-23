@@ -57,11 +57,11 @@ END_DATA
 ## Known bugs
 - None
 ## Waypoints
-- Fixed box size equals zero crash.
 - Comments in source file.
 - Make Nuke Addon.
 - In-GUI picture preview.
 ## 2.1
+- Fixed box size equals zero crash.
 - Now generating color boxes from bottom left corner.
 - Now generating doesn't make UI freeze. Generating now in separate thread.
 - Major improvements in code readability.
