@@ -1,4 +1,4 @@
-# 3DLC_CustomCheckerReader
+# 3DLC_CustomCheckerConverter
 
 Rust application, that creates RGB image of each color from 3D LUT Creator custom checker. Generate unique: output is image with each color (RGB) from the source file. Generate filled: funny thing that creates amazing pictures filled with colors from checker. App takes lines between BEGIN_DATA/END_DATA lines and covert LAB_L, LAB_A and LAB_B columns to 32-bit RGB array. App takes the RGB values and creates PNG(for 16-bit mode) or OpenEXR(for 32-bit mode) images for each value using all colors from array. Also you can edit c3ldc/source/* files with built-in text editor.
 
