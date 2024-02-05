@@ -12,3 +12,4 @@ egui = "0.25.0"
 palette = "0.7.3"
 image = "0.24.8"
 imageproc = "0.23.0"
+

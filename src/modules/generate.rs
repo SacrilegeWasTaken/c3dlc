@@ -5,18 +5,19 @@ use std::error::Error;
 use std::io::ErrorKind;
 
 pub fn generate(
-    bitmode: bool,
-    gentype: bool,
-    width: String,
-    height: String,
-    size: String,
-    colors: Vec<Vec<f32>>,
-    number: u16,
-) -> Result<(), Box<dyn Error>> {
-    // convert string to u32
+    bitmode:    bool,
+    gentype:    bool,
+    width:      String,
+    height:     String,
+    size:       String,
+    colors:     Vec<Vec<f32>>,
+    number:     u16,
+) -> Result<(), Box<dyn Error>>
+{
     let width = width.parse::<u32>()?;
     let height = height.parse::<u32>()?;
     let size = size.parse::<u32>()?;
+
     if size == 0 {
         return Err(Box::new(std::io::Error::new(ErrorKind::WriteZero, "")));
     }
@@ -37,13 +38,14 @@ pub fn generate(
 }
 
 fn generate32bit(
-    gentype: bool,
-    width: u32,
-    height: u32,
-    size: u32,
-    colors: Vec<Vec<f32>>,
-    number: u16,
-) {
+    gentype:    bool,
+    width:      u32,
+    height:     u32,
+    size:       u32,
+    colors:     Vec<Vec<f32>>,
+    number:     u16,
+)
+{
     let mut imagebuf32 = Rgb32FImage::new(width, height);
     let mut color = colors.iter();
     for i in 0..(height / size) {
@@ -67,18 +69,19 @@ fn generate32bit(
     }
 
     image::imageops::flip_vertical_in_place(&mut imagebuf32);
-
     imagebuf32.save(get_save_path(number, true)).unwrap();
 }
 
+
 fn generate16bit(
-    gentype: bool,
-    width: u32,
-    height: u32,
-    size: u32,
-    colors: Vec<Vec<f32>>,
-    number: u16,
-) {
+    gentype:    bool,
+    width:      u32,
+    height:     u32,
+    size:       u32,
+    colors:     Vec<Vec<f32>>,
+    number:     u16,
+)
+{
     let mut imagebuf16 = ImageBuffer::new(width, height);
     let mut color = colors.iter();
     for i in 0..(height / size) {
@@ -109,15 +112,30 @@ fn generate16bit(
     imagebuf16.save(get_save_path(number, false)).unwrap();
 }
 
-fn get_save_path(number: u16, bitmode: bool) -> String {
-    let path = std::env::current_exe()
-        .ok()
-        .and_then(|exe_dir| {
-            exe_dir
-                .to_str()
-                .map(|path| format!("{}c3dlc/pics/", path.replace("converter3dlc", "")))
-        })
-        .unwrap_or_else(String::new);
+
+fn get_save_path(number: u16, bitmode: bool) -> String
+{
+    let path;
+
+    if cfg!(target_os = "windows"){
+        path = std::env::current_exe()
+            .ok()
+            .and_then(|exe_dir| {
+                exe_dir
+                    .to_str()
+                    .map(|path| format!("{}c3dlc/pics/", path.replace("converter3dlc", "")))
+            })
+            .unwrap_or_else(String::new);
+    } else {
+        path = std::env::current_exe()
+            .ok()
+            .and_then(|exe_dir| {
+                exe_dir
+                    .to_str()
+                    .map(|path| format!("{}c3dlc/pics/", path.replace("converter3dlc", "")))
+            })
+            .unwrap_or_else(String::new);
+    }
     match bitmode {
         true => return format!("{path}output{number}_32bit.exr"),
         false => return format!("{path}output{number}_16bit.png"),

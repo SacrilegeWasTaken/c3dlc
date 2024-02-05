@@ -1,20 +1,26 @@
 use std::{
-    env, fs,
-    io::{Read, Write},
-    path::Path,
+    env, fs, io::{Read, Write}, path::Path
 };
+
+
 pub fn makeall() {
     if let Ok(current_dir) = env::current_exe() {
         if let Some(path) = current_dir.to_str() {
-            makedir(&format!("{}c3dlc", path.replace("converter3dlc", "")));
-            makedir(&format!("{}c3dlc/pics", path.replace("converter3dlc", "")));
-            makedir(&format!(
-                "{}c3dlc/source",
-                path.replace("converter3dlc", "")
-            ));
+            let spath: String;
+
+            if cfg!(target_os = "windows"){
+                spath = path.replace("converter3dlc.exe", "");
+            } else {
+                spath = path.replace("converter3dlc", "");
+            }
+
+            makedir(&format!("{}c3dlc", &spath));
+            makedir(&format!("{}c3dlc/pics", &spath));
+            makedir(&format!("{}c3dlc/source", &spath));
         }
     }
 }
+
 
 fn makedir(name: &str) {
     let filepath = Path::new(name);
@@ -23,47 +29,48 @@ fn makedir(name: &str) {
     }
 }
 
+
 pub struct SourceFiles {
-    pub current_path: String,
-    path_vector: Vec<String>,
+    pub current_path:   String,
+    path_vector:        Vec<String>,
 }
+
+
 impl SourceFiles {
-    pub fn new() -> Self {
+    pub fn new() -> Result<Self, std::io::Error> 
+    {
         let mut path_vector: Vec<String> = Vec::new();
-        if let Ok(exe_dir) = env::current_exe() {
-            if let Some(path) = exe_dir.to_str() {
-                let source_path = format!("{}c3dlc/source/", path.replace("converter3dlc", ""));
-                match fs::read_dir(&source_path) {
-                    Ok(entries) => {
-                        for entry in entries {
-                            if let Ok(entry) = entry {
-                                if let Ok(file_name) = entry.file_name().into_string() {
-                                    path_vector.push(format!("{}{}", source_path, file_name));
-                                } else {
-                                    panic!("Err reading source dir!");
-                                }
-                            }
-                        }
-                    }
-                    Err(error) => {
-                        panic!("Error reading source directory! {}", error)
-                    }
-                }
-            }
+        let source_path: String;
+
+
+        if cfg!(target_os = "windows"){
+            source_path = format!("{}c3dlc/source/", env::current_exe()?.to_str().unwrap().replace("converter3dlc.exe", ""));
+        } else {
+            source_path = format!("{}c3dlc/source/", env::current_exe()?.to_str().unwrap().replace("converter3dlc", ""));
         }
-        Self {
+
+
+        let entries = fs::read_dir(&source_path)?;
+        for entry in entries {
+            path_vector.push(format!("{}{}", source_path, entry?.file_name().into_string().unwrap()));
+        }
+
+
+        path_vector.sort();
+        Ok(Self {
             path_vector: path_vector.clone(),
             current_path: {
-                (|| -> String {
-                    match path_vector.first() {
-                        Some(first_element) => String::from(first_element),
-                        None => String::from("None"),
-                    }
-                })()
-            },
-        }
+                match path_vector.first() {
+                    Some(first_element) => String::from(first_element),
+                    None => String::from("None"),
+                }
+            }
+        })
     }
-    pub fn get_content(&self) -> String {
+
+
+    pub fn get_content(&self) -> String
+    {
         let mut openresult = match fs::File::open(&self.current_path) {
             Ok(file) => file,
             Err(e) => {
@@ -81,7 +88,10 @@ impl SourceFiles {
         }
         return content;
     }
-    pub fn savef(&self, content: &String) {
+
+
+    pub fn savef(&self, content: &String)
+    {
         let mut file = match fs::File::create(&self.current_path) {
             Ok(file) => file,
             Err(e) => {
@@ -94,7 +104,10 @@ impl SourceFiles {
             return;
         }
     }
-    pub fn nextf(&mut self) {
+
+
+    pub fn nextf(&mut self) 
+    {
         for i in 0..self.path_vector.len() {
             if self.current_path == self.path_vector[i] {
                 if i != (self.path_vector.len() - 1) {
@@ -107,7 +120,10 @@ impl SourceFiles {
             }
         }
     }
-    pub fn prevf(&mut self) {
+
+
+    pub fn prevf(&mut self)
+    {
         for i in 0..self.path_vector.len() {
             if self.current_path == self.path_vector[i] {
                 if i != 0 {
@@ -121,10 +137,20 @@ impl SourceFiles {
             }
         }
     }
-    pub fn relativepath(&self) -> String {
+
+
+    pub fn relativepath(&self) -> String
+    {
         if let Ok(exe_dir) = env::current_exe() {
             if let Some(path) = exe_dir.to_str() {
-                let source_path = format!("{}c3dlc/", path.replace("converter3dlc", ""));
+                let source_path: String;
+
+                if cfg!(target_os = "windows"){
+                    source_path = format!("{}c3dlc/", path.replace("converter3dlc.exe", ""));
+                } else {
+                    source_path = format!("{}c3dlc/", path.replace("converter3dlc", ""));
+                }
+
                 format!("{}", self.current_path.replace(&source_path, ""))
             } else {
                 "Some errors with relative path module".to_string()
@@ -134,3 +160,6 @@ impl SourceFiles {
         }
     }
 }
+
+
+

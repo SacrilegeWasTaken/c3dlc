@@ -7,48 +7,49 @@ use super::colors::{convert_colors, extract_colors};
 pub use super::files::SourceFiles;
 use super::generate::generate;
 
-pub fn gui() -> Result<(), eframe::Error> {
+pub fn gui() -> Result<(), eframe::Error>
+{
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size([500.0, 500.0])
             .with_resizable(false),
         ..Default::default()
     };
+
     eframe::run_native(
         "convert3dlc",
         options,
         Box::new(|cc| {
             egui_extras::install_image_loaders(&cc.egui_ctx);
-
             Box::<MyApp>::default()
         }),
     )
 }
 
 pub struct MyApp {
-    width: String,
-    height: String,
-    boxsize: String,
-    elem_height: f32,
-    bitmode: bool,
-    filecontent: String,
-    console: String,
-    colorfile: SourceFiles,
-    number: u16,
+    width:          String,
+    height:         String,
+    boxsize:        String,
+    elem_height:    f32,
+    bitmode:        bool,
+    filecontent:    String,
+    console:        String,
+    colorfile:      SourceFiles,
+    number:         u16,
 }
 
 impl Default for MyApp {
     fn default() -> Self {
         Self {
-            boxsize: String::new(),
-            width: String::new(),
-            height: String::new(),
-            elem_height: 30f32,
-            bitmode: false,
-            filecontent: String::new(),
-            console: String::from("\t\tHi! You need to place your files into the source folder.\nSource code: SacrilegeWasTaken/3DLC_CustomCheckerReader"),
-            colorfile: SourceFiles::new(),
-            number: 1u16,
+            boxsize:        String::new(),
+            width:          String::new(),
+            height:         String::new(),
+            elem_height:    30f32,
+            bitmode:        false,
+            filecontent:    String::new(),
+            console:        String::from("\t\tHi! You need to place your files into the source folder.\nSource code: SacrilegeWasTaken/3DLC_CustomCheckerReader"),
+            colorfile:      SourceFiles::new().expect("Err"),
+            number:         1u16,
         }
     }
 }
@@ -57,9 +58,9 @@ impl eframe::App for MyApp {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.vertical(|ui| {
                 ui.horizontal(|ui| {
-                    let input_width = text_edit::TextEdit::singleline(&mut self.width);
-                    let input_height = text_edit::TextEdit::singleline(&mut self.height);
-                    let input_boxsize = text_edit::TextEdit::singleline(&mut self.boxsize);
+                    let input_width     = text_edit::TextEdit::singleline(&mut self.width);
+                    let input_height    = text_edit::TextEdit::singleline(&mut self.height);
+                    let input_boxsize   = text_edit::TextEdit::singleline(&mut self.boxsize);
                     ui.add_sized(
                         [ui.available_width() / 3f32, self.elem_height],
                         input_width
@@ -85,12 +86,11 @@ impl eframe::App for MyApp {
                 self.fix_fields();
 
                 ui.horizontal(|ui| {
-                    let gen_filled = egui::Button::new("Generate Filled");
-                    let gen_unique = egui::Button::new("Generate Unique");
-                    let bitmode = egui::Button::new("Toggle 32-bit mode");
+                    let gen_filled  = egui::Button::new("Generate Filled");
+                    let gen_unique  = egui::Button::new("Generate Unique");
+                    let bitmode     = egui::Button::new("Toggle 32-bit mode");
                     if ui
-                        .add_sized([ui.available_width() / 3f32, self.elem_height], gen_unique)
-                        .clicked()
+                        .add_sized([ui.available_width() / 3f32, self.elem_height], gen_unique).clicked()
                     {
                         //generate();
                         match generate(
@@ -104,7 +104,7 @@ impl eframe::App for MyApp {
                         ) {
                             Ok(()) => {
                                 self.console = format!(
-                                    "Generated {} filled image",
+                                    "Generated {} unique image",
                                     (|| -> &str {
                                         if self.bitmode == false {
                                             "16-bit"
@@ -250,8 +250,8 @@ impl eframe::App for MyApp {
 }
 impl MyApp {
     fn fix_fields(&mut self) {
-        self.boxsize = self.boxsize.chars().filter(|&c| c.is_digit(10)).collect();
-        self.height = self.height.chars().filter(|&c| c.is_digit(10)).collect();
-        self.width = self.width.chars().filter(|&c| c.is_digit(10)).collect();
+        self.boxsize    = self.boxsize.chars().filter(|&c| c.is_digit(10)).collect();
+        self.height     = self.height.chars().filter(|&c| c.is_digit(10)).collect();
+        self.width      = self.width.chars().filter(|&c| c.is_digit(10)).collect();
     }
 }

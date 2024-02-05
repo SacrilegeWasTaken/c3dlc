@@ -58,6 +58,8 @@ END_DATA
 - Comments in source file.
 - Make Nuke Addon.
 - In-GUI picture preview.
+## 2.11
+- Major improvements in code readability.
 ## 2.1
 - Fixed box size equals zero crash.
 - Now generating color boxes from bottom left corner.
