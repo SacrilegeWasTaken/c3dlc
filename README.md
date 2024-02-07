@@ -7,7 +7,7 @@ Enjoy saving a lotta time!
 # Running
 ## Downloads
 
-Download [converter3dlc](https://www.icloud.com/iclouddrive/00ejL3fHVLUv7vGvW0H4a-eGw#convert3dlc%5Fosx%5Fexecutable) for Apple Silicon MacOS or [converter3dlc.exe](https://www.icloud.com/iclouddrive/0515g5gTILEdgaE0tmVqEo4xg#convert3dlc%5Fwin%5Fexecutable) for Windows  
+Download [executable](https://github.com/SacrilegeWasTaken/3DLC_CustomCheckerConverter/releases/tag/2.2.release) for Apple Silicon Mac or x86_64 Windows.
 If you're on linux -> build app with cargo. Short instruction located below.
 
 ## User guide
