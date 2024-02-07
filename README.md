@@ -7,7 +7,7 @@ Enjoy saving a lotta time!
 # Running
 ## Downloads
 
-Download [executable](https://github.com/SacrilegeWasTaken/3DLC_CustomCheckerConverter/releases/tag/2.2.release) for Apple Silicon Mac or x86_64 Windows.
+Download [executable](https://github.com/SacrilegeWasTaken/3DLC_CustomCheckerConverter/releases/tag/2.2.release) for Apple Silicon Mac or x86_64 Windows.  
 If you're on linux -> build app with cargo. Short instruction located below.
 
 ## User guide
