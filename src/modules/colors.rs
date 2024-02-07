@@ -22,8 +22,8 @@ pub fn extract_colors(data: &str) -> Vec<Vec<f32>> {
             in_data_block = false;
         } else if in_data_block {
             let values: Vec<f32> = line
-                .split('\t') // Use tab character as delimiter
-                .skip(5) // Skip the first 6 values
+                .split('\t') 
+                .skip(5)
                 .filter_map(|s| s.parse().ok())
                 .collect();
             lab_colors.push(values);

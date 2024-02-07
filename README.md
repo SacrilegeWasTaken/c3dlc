@@ -53,11 +53,15 @@ END_DATA
 
 # ChangeLog
 ## Known bugs
-- Renaming executable causing errors.
+- None
 ## Waypoints
 - Comments in source file.
 - Make Nuke Addon.
 - In-GUI picture preview.
+## 2.2
+- Renaming executable error fixed.
+- color.txt is not accessible if it's not in the source folder at the startup moment bug fixed.
+- Minor performance improvements.
 ## 2.11
 - Major improvements in code readability.
 - Fixed generated folder name on windows.

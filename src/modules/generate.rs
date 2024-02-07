@@ -4,6 +4,8 @@ use imageproc::rect::Rect;
 use std::error::Error;
 use std::io::ErrorKind;
 
+use super::gui::SourceFiles;
+
 pub fn generate(
     bitmode:    bool,
     gentype:    bool,
@@ -67,7 +69,6 @@ fn generate32bit(
             draw_filled_rect_mut(&mut imagebuf32, rect, Rgb([color[0], color[1], color[2]]));
         }
     }
-
     image::imageops::flip_vertical_in_place(&mut imagebuf32);
     imagebuf32.save(get_save_path(number, true)).unwrap();
 }
@@ -115,27 +116,7 @@ fn generate16bit(
 
 fn get_save_path(number: u16, bitmode: bool) -> String
 {
-    let path;
-
-    if cfg!(target_os = "windows"){
-        path = std::env::current_exe()
-            .ok()
-            .and_then(|exe_dir| {
-                exe_dir
-                    .to_str()
-                    .map(|path| format!("{}c3dlc/pics/", path.replace("converter3dlc", "")))
-            })
-            .unwrap_or_else(String::new);
-    } else {
-        path = std::env::current_exe()
-            .ok()
-            .and_then(|exe_dir| {
-                exe_dir
-                    .to_str()
-                    .map(|path| format!("{}c3dlc/pics/", path.replace("converter3dlc", "")))
-            })
-            .unwrap_or_else(String::new);
-    }
+    let path = format!("{}c3dlc/pics/", SourceFiles::exe_dir());
     match bitmode {
         true => return format!("{path}output{number}_32bit.exr"),
         false => return format!("{path}output{number}_16bit.png"),

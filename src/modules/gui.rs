@@ -48,7 +48,7 @@ impl Default for MyApp {
             bitmode:        false,
             filecontent:    String::new(),
             console:        String::from("\t\tHi! You need to place your files into the source folder.\nSource code: SacrilegeWasTaken/3DLC_CustomCheckerReader"),
-            colorfile:      SourceFiles::new().expect("Err"),
+            colorfile:      SourceFiles::new(),
             number:         1u16,
         }
     }
@@ -195,9 +195,9 @@ impl eframe::App for MyApp {
                     {
                         let content = self.colorfile.get_content();
                         match content.as_str() {
-                            "" => self.console = "Error with opening file.".to_string(),
+                            "" => self.console   = "Error with opening file.".to_string(),
                             _ => {
-                                self.console = format!("Opened: {}", self.colorfile.relativepath());
+                                self.console     = format!("Opened: {}", self.colorfile.relativepath());
                                 self.filecontent = content
                             }
                         }
@@ -207,9 +207,8 @@ impl eframe::App for MyApp {
                         .clicked()
                     {
                         self.colorfile.prevf();
-                        self.filecontent = self.colorfile.get_content();
-                        self.console =
-                            format!("Opened previous: {}", self.colorfile.relativepath());
+                        self.filecontent    = self.colorfile.get_content();
+                        self.console        = format!("Opened previous: {}", self.colorfile.relativepath());
                     }
                     if ui
                         .add_sized([ui.available_width() / 2f32, self.elem_height], nextfile)
@@ -217,7 +216,7 @@ impl eframe::App for MyApp {
                     {
                         self.colorfile.nextf();
                         self.filecontent = self.colorfile.get_content();
-                        self.console = format!("Opened next: {}", self.colorfile.relativepath());
+                        self.console     = format!("Opened next: {}", self.colorfile.relativepath());
                     }
                     if ui
                         .add_sized([ui.available_width(), self.elem_height], savefile)
